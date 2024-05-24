@@ -1,0 +1,31 @@
+# Java
+*.class
+*.jar
+*.war
+*.ear
+target/
+
+# VS Code
+.vscode/
+.settings/
+*.code-workspace
+
+# Maven
+/.mvn/
+/target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+
+# Spring Boot
+/.idea/
+/.classpath
+/.project
+/.settings/
+/target/
+!.mvn/wrapper/maven-wrapper.jar
