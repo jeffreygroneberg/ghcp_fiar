@@ -29,3 +29,7 @@ buildNumber.properties
 /.settings/
 /target/
 !.mvn/wrapper/maven-wrapper.jar
+
+# Apache Derby
+/db-derby-
+derby.log

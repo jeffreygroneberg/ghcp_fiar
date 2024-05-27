@@ -13,7 +13,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 
-@Entity(name = "fiar_game")
+@Entity
 public class FiarGame {
 
     @Id
@@ -23,7 +23,7 @@ public class FiarGame {
     private UUID uiidPlayer1;
     private UUID uuidPlayer2;
 
-    @Column(columnDefinition = "TEXT")
+
     private String board;
 
     private String playerOneName;

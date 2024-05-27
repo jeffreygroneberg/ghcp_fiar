@@ -8,8 +8,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.microsoft.germany.csu.fourinarow.dtos.CreateGameDTO;
 import com.microsoft.germany.csu.fourinarow.dtos.FiarGameDTO;
 import com.microsoft.germany.csu.fourinarow.dtos.GameCreatedDTO;
 import com.microsoft.germany.csu.fourinarow.dtos.JoinGameDTO;
@@ -18,8 +20,10 @@ import com.microsoft.germany.csu.fourinarow.services.fiar.api.FiarService;
 
 import jakarta.transaction.Transactional;
 
-@RestController("/api/games")
+@RestController
+@RequestMapping("/api/games")
 public class GameAPI {
+
 
     private final CrudRepository<FiarGame, UUID> crudRepository;
 
@@ -28,14 +32,13 @@ public class GameAPI {
         this.crudRepository = crudRepository;
     }
 
-    @Transactional
     @PostMapping
-    public ResponseEntity<GameCreatedDTO> createGame(@RequestBody FiarGame fiarGame) {
+    public ResponseEntity<GameCreatedDTO> createGame(@RequestBody CreateGameDTO fiarGame) {
 
         FiarGame newGame = new FiarGame();
-        newGame.setBoard(fiarGame.getBoard());
         newGame.setBoard("----------------------------------------------------------------");
         newGame.setUiidPlayer1(UUID.randomUUID());
+        newGame.setPlayerOneName(fiarGame.getPlayer1());
 
         crudRepository.save(newGame);
 
@@ -88,7 +91,7 @@ public class GameAPI {
         }
 
         return ResponseEntity.ok(new FiarGameDTO(game.getPlayerOneName(), game.getPlayerTwoname(), game.getId(),
-                game.getUiidPlayer1().toString(), game.getUuidPlayer2().toString(), game.getBoard(),
+                game.getUiidPlayer1().toString(), "", game.getBoard(),
                 game.getStatus()));
 
     }
